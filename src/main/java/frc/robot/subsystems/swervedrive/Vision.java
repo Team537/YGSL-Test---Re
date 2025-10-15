@@ -22,6 +22,7 @@ import edu.wpi.first.networktables.NetworkTablesJNI;
 import edu.wpi.first.wpilibj.Alert;
 import edu.wpi.first.wpilibj.Alert.AlertType;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import java.awt.Desktop;
 import java.util.ArrayList;
@@ -146,15 +147,14 @@ public class Vision
       System.out.println("A");
       if (poseEst.isPresent())
       {
+
         var pose = poseEst.get();
-        System.out.print("(" + pose.estimatedPose.getX() + ", " + pose.estimatedPose.getY() + ")");
         swerveDrive.addVisionMeasurement(pose.estimatedPose.toPose2d(),
                                          pose.timestampSeconds,
                                          camera.curStdDevs);
 
-        if (pose != null) {
-          System.out.println("C");
-        }
+        SmartDashboard.putNumber("VisionX", pose.estimatedPose.getX());
+        SmartDashboard.putNumber("VisionY", pose.estimatedPose.getY());
       }
     }
 
