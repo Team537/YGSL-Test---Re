@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.DriveDistance;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import java.io.File;
 import swervelib.SwerveInputStream;
@@ -186,8 +187,8 @@ public class RobotContainer
    */
   public Command getAutonomousCommand()
   {
-    // An example command will be run in autonomous
-    return drivebase.driveToDistanceCommand(1.0, 0.2);
+    // Drive forward 3 feet (0.9144 m)
+    return new DriveDistance(drivebase, Units.feetToMeters(3.0));
   }
 
   public void setMotorBrake(boolean brake)
